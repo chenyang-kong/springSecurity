@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             throw new UsernameNotFoundException("用户不存在");
         }
         //因为没有dao层，用户名、密码、权限这里先写死了，权限不能为空
-        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("aaa");
+        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("admins,ROLE_admin,ROLE_sale" );
         return new User(user.getName(),new BCryptPasswordEncoder().encode(user.getPassword()),auths);
     }
 }
